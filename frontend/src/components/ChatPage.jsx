@@ -146,14 +146,20 @@ const ChatPage = () => {
           <div className="flex flex-col h-screen bg-[url('https://th.bing.com/th/id/OIP.kvq2cAPCMr8rX-Av81em_gAAAA?pid=ImgDet&rs=1')] bg-center">
             {/* Top Navbar */}
             {recepientData && (
-              <div className="flex items-center justify-between h-16 px-3 py-2 bg-gradient-to-r from-slate-900 via-slate-950 to-slate-950">
-                <div className="flex items-center">
+              <div
+                className={`flex items-center ${
+                  window.innerWidth < 1024
+                    ? "fixed top-0 left-0 w-full z-50 "
+                    : "static"
+                } justify-between h-16 px-3 py-2 bg-gradient-to-r from-slate-900 via-slate-950 to-slate-950 `}
+              >
+                <div className={`flex items-center `}>
                   <BiArrowBack
                     onClick={() => navigate(-1)}
                     className="text-2xl font-medium text-white mr-[6px] cursor-pointer"
                   />
                   <img
-                    className="w-10 h-10 rounded-full object-cover"
+                    className="w-11 h-11 rounded-full object-cover"
                     src={recepientData?.avatar.secureUrl}
                     alt="Avatar"
                   />
@@ -173,7 +179,11 @@ const ChatPage = () => {
             )}
 
             {/* Chat messages */}
-            <div className="flex-grow px-1 py-3 overflow-y-scroll">
+            <div
+              className={`flex-grow px-1 py-3 overflow-y-scroll ${
+                window.innerWidth < 1024 ? "mt-[64px] " : ""
+              } `}
+            >
               {messages?.map((message) => (
                 <div ref={scrollRef} key={message._id}>
                   {/* image */}
@@ -211,7 +221,7 @@ const ChatPage = () => {
                       {message.content}
                     </div>
                     <div className="chat-footer">
-                      <time className="text-[13px]  text-white">
+                      <time className="text-[12px]  text-white">
                         {moment(message.timestamp).format("HH:mm")}
                       </time>
                     </div>
@@ -230,7 +240,6 @@ const ChatPage = () => {
                   value={content}
                   onChange={(e) => setContent(e.target.value)}
                   onKeyDown={handleKeyDown}
-                  autoFocus
                 />
                 <label htmlFor="image-upload">
                   <FaRegImage className="text-2xl text-slate-500 curser cursor-pointer" />

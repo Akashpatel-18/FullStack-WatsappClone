@@ -89,7 +89,6 @@ const SignUpPage = () => {
                     [e.target.name]: e.target.value,
                   })
                 }
-                autoFocus
                 required
               />
             </div>
@@ -149,7 +148,7 @@ const SignUpPage = () => {
                 type="file"
                 accept="image/*"
                 name="avatar"
-                className="w-full rounded bg-gray-700 text-slate-300"
+                className="w-full rounded bg-gray-700 text-slate-300 py-1 px-1"
                 onChange={handleImageChange}
               />
             </div>

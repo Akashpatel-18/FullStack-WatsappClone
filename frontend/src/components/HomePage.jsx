@@ -149,7 +149,7 @@ const HomePage = () => {
           <nav className=" bg-gradient-to-r from-slate-950 via-slate-900 to-slate-950 fixed top-0 left-0 right-0 z-10 ">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="flex items-center justify-between h-16">
-                <div className="text-2xl font-extrabold">
+                <div className="text-[26px] font-extrabold">
                   <span className="bg-clip-text text-transparent bg-gradient-to-r from-pink-700 to-violet-800">
                     Chatty
                   </span>
@@ -164,7 +164,7 @@ const HomePage = () => {
                     aria-expanded={open ? "true" : undefined}
                   >
                     <img
-                      className="h-9 w-9 mr-2 rounded-full object-cover cursor-pointer ring-pink-600 ring-2 ring-offset-2 ring-offset-gray-950"
+                      className="h-10 w-10 mr-2 rounded-full object-cover cursor-pointer ring-pink-600 ring-2 ring-offset-2 ring-offset-gray-950"
                       src={userProfile?.avatar?.secureUrl}
                       alt="Avatar"
                     />
@@ -224,20 +224,20 @@ const HomePage = () => {
                   <Link key={user.user._id} to={`/chat/${user.user._id}`}>
                     <li
                       key={user.user._id}
-                      className="flex items-center justify-between cursor-pointer hover:bg-gray-900 focus:outline-none p-3"
+                      className="flex items-center justify-between cursor-pointer hover:bg-gray-900 focus:outline-none p-[14px]"
                     >
                       <div className="flex items-center">
                         <img
-                          className="h-11 sm:h-11 sm:w-11 w-11 rounded-full object-cover"
+                          className="h-12 sm:h-11 sm:w-11 w-12 ml-2 rounded-full object-cover"
                           src={user.user.avatar.secureUrl}
                           alt={user.user.username}
                         />
                         <div className="ml-3 mr-3">
-                          <p className="text-[16.8px] sm:text-lg font-medium tracking-wide">
+                          <p className="text-lg sm:text-lg font-semibold mb-[1px] tracking-wide">
                             {user.user.username.charAt(0).toUpperCase() +
                               user.user.username.slice(1)}
                           </p>
-                          <p className="text-sm sm:text-sm tracking-wide text-gray-400">
+                          <p className="text-md sm:text-sm tracking-wide text-gray-400">
                             {user.lastMessage &&
                               truncateText(user.lastMessage.content, 36)}
                           </p>

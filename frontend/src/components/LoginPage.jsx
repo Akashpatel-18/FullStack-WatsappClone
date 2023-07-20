@@ -39,7 +39,7 @@ const LoginPage = () => {
 
   return (
     <>
-      <div className="min-h-screen bg-gray-900 flex items-center justify-center">
+      <div className="h-screen bg-gray-900 flex items-center justify-center">
         <div className=" p-8 sm:p-8 sm:bg-gray-800 sm:shadow-lg sm:rounded-lg  w-full sm:max-w-sm">
           <h2 className="text-[26px] text-center tracking-wide text-white font-semibold mb-16">
             Login to continue
@@ -64,7 +64,6 @@ const LoginPage = () => {
                     [e.target.name]: e.target.value,
                   })
                 }
-                autoFocus
                 required
               />
             </div>

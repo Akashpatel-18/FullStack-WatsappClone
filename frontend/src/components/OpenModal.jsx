@@ -90,14 +90,13 @@ const OpenModal = ({ open, setOpen }) => {
         }}
       >
         <div className="min-h-screen overflow-y-auto bg-gray-950">
-          <nav className="w-full sm:w-[425px] bg-gradient-to-r from-slate-950 via-gray-900 to-slate-950 fixed top-0 z-10 py-2 px-4">
+          <nav className="w-full sm:w-[425px] bg-gradient-to-r from-slate-950 via-gray-800 to-slate-950 fixed top-0 z-10 py-2 px-4">
             <input
               type="text"
               value={person}
               onChange={(e) => setPerson(e.target.value)}
-              autoFocus
               placeholder="Search friend's"
-              className="bg-gray-950 border-gray-700 border text-[16px] rounded-full py-3 px-4 w-full text-white focus:outline-none"
+              className="bg-gray-950 border-gray-600 border text-[16px] rounded-full py-3 px-4 w-full text-white focus:outline-none"
             />
           </nav>
 
@@ -111,16 +110,16 @@ const OpenModal = ({ open, setOpen }) => {
                   >
                     <div className="flex items-center">
                       <img
-                        className={`h-10 sm:h-10 ${
+                        className={`h-12 sm:h-10 ${
                           user._id === sender ? "hidden" : null
-                        } w-10 sm:w-10 rounded-full object-cover`}
+                        } w-12 sm:w-10 rounded-full object-cover`}
                         src={user.avatar.secureUrl}
                         alt={user.username}
                       />
                       <p
-                        className={`ml-3 text-md sm:text-lg ${
+                        className={`ml-3 text-lg sm:text-lg ${
                           user._id === sender ? "hidden" : null
-                        } font-normal tracking-wide`}
+                        } font-semibold tracking-wider`}
                       >
                         {user.username.charAt(0).toUpperCase() +
                           user.username.slice(1)}
@@ -147,16 +146,16 @@ const OpenModal = ({ open, setOpen }) => {
                     >
                       <div className="flex items-center">
                         <img
-                          className={`h-10 sm:h-10 ${
+                          className={`h-12 sm:h-10 ${
                             user._id === sender ? "hidden" : null
-                          } w-10 sm:w-10 rounded-full object-cover`}
+                          } w-12 sm:w-10 rounded-full object-cover`}
                           src={user.avatar.secureUrl}
                           alt={user.username}
                         />
                         <p
-                          className={`ml-3 text-md sm:text-lg ${
+                          className={`ml-3 text-lg sm:text-lg ${
                             user._id === sender ? "hidden" : null
-                          } font-normal tracking-wide`}
+                          } font-semibold tracking-wide`}
                         >
                           {user.username.charAt(0).toUpperCase() +
                             user.username.slice(1)}

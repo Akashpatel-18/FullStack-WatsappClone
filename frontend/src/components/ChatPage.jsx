@@ -146,7 +146,7 @@ const ChatPage = () => {
                     alt="Avatar"
                   />
                   <div className="ml-2">
-                    <p className="text-[16px] sm:text-lg tracking-wider font-medium text-white">
+                    <p className="text-[16px] sm:text-lg tracking-wide font-bold text-white">
                       {recepientData?.username.charAt(0).toUpperCase() +
                         recepientData?.username.slice(1)}
                     </p>

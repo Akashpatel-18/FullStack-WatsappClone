@@ -14,7 +14,7 @@ import io from "socket.io-client";
 import Loading from "./Loading";
 import Error from "./Error";
 
-const backendUrl = import.meta.env.VITE_REACT_BACKEND_URL;
+const backendUrl = "https://chatty-nx09.onrender.com";
 
 const fetchMyUserData = async ({ token, sender }) => {
   const response = await axios.get(
@@ -76,7 +76,7 @@ const HomePage = () => {
   }, []);
 
   useEffect(() => {
-    socket.current = io(import.meta.env.VITE_REACT_BACKEND_URL);
+    socket.current = io("https://chatty-nx09.onrender.com");
     socket.current.on("onlineUsers", (res) => {
       setOnlineUsers(res);
     });

@@ -13,7 +13,7 @@ const OpenModal = ({ open, setOpen }) => {
   const token = profile?.token;
   const sender = profile?.id;
   const queryClient = useQueryClient();
-  const backendUrl = import.meta.env.VITE_REACT_BACKEND_URL;
+  const backendUrl = "https://chatty-nx09.onrender.com";
 
   const fetchUsers = async ({ sender, token }) => {
     const response = await axios.get(

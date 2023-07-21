@@ -12,7 +12,7 @@ const LoginPage = () => {
     password: "",
   });
 
-  const backendUrl = import.meta.env.VITE_REACT_BACKEND_URL;
+  const backendUrl = "https://chatty-nx09.onrender.com";
 
   const createUser = async (formData) => {
     const response = await axios.post(backendUrl + "/api/v1/login", formData);

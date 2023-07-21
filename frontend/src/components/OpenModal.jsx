@@ -119,7 +119,7 @@ const OpenModal = ({ open, setOpen }) => {
                       <p
                         className={`ml-3 text-lg sm:text-lg ${
                           user._id === sender ? "hidden" : null
-                        } font-semibold tracking-wider`}
+                        } font-bold tracking-wider`}
                       >
                         {user.username.charAt(0).toUpperCase() +
                           user.username.slice(1)}
@@ -155,7 +155,7 @@ const OpenModal = ({ open, setOpen }) => {
                         <p
                           className={`ml-3 text-lg sm:text-lg ${
                             user._id === sender ? "hidden" : null
-                          } font-semibold tracking-wide`}
+                          } font-bold tracking-wide`}
                         >
                           {user.username.charAt(0).toUpperCase() +
                             user.username.slice(1)}

@@ -196,7 +196,7 @@ const HomePage = () => {
                           alt={user.user.username}
                         />
                         <div className="ml-3 mr-3">
-                          <p className="text-lg sm:text-lg font-semibold mb-[1px] tracking-wide">
+                          <p className="text-lg sm:text-lg font-bold tracking-wide">
                             {user.user.username.charAt(0).toUpperCase() +
                               user.user.username.slice(1)}
                           </p>

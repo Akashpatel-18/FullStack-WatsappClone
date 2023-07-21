@@ -24,24 +24,6 @@ const ChatPage = () => {
   const recepient = userId;
   const backendUrl = import.meta.env.VITE_REACT_BACKEND_URL;
   let data = "";
-  // useEffect(() => {
-  //   if (socket === null) return;
-  //   socket.emit("sendMessage", { data, recepient });
-  // }, [socket, messages]);
-
-  // useEffect(() => {
-  //   socket.current?.on("receiveMessage", ({ data, recepient }) => {
-  //     if (recepient === userId) {
-  //       setReceiveMessage(data);
-  //     }
-  //   });
-  // }, []);
-
-  // useEffect(() => {
-  //   if (receiveMessage) {
-  //     setMessages([...messages, receiveMessage]);
-  //   }
-  // }, [receiveMessage]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -91,12 +73,6 @@ const ChatPage = () => {
   //   }
   // };
 
-  // const inputData = {
-  //   sender: sender,
-  //   recepient: recepient,
-  //   content: content,
-  // };
-
   const handleInput = async () => {
     if (content) {
       try {
@@ -120,12 +96,18 @@ const ChatPage = () => {
     data = "";
   };
 
+  // useEffect(() => {
+  //   socket.current?.on("receiveMessage", (data) => {
+  //     // if (data.recepient === userId || data.sender === sender) {
+  //     data && setReceiveMessage(data);
+  //     // setMessages([...messages, data]);
+  //     // }
+  //   });
+  // }, []);
+
   useEffect(() => {
     socket.current?.on("receiveMessage", (data) => {
-      // if (data.recepient === userId || data.sender === sender) {
       data && setReceiveMessage(data);
-      // setMessages([...messages, data]);
-      // }
     });
   }, []);
 
@@ -160,7 +142,7 @@ const ChatPage = () => {
                   />
                   <img
                     className="w-11 h-11 rounded-full object-cover"
-                    src={recepientData?.avatar.secureUrl}
+                    src={recepientData?.avatar}
                     alt="Avatar"
                   />
                   <div className="ml-2">
@@ -169,7 +151,9 @@ const ChatPage = () => {
                         recepientData?.username.slice(1)}
                     </p>
                     <p className="text-[13px] tracking-wider sm:text-sm text-gray-400">
-                      {onlineUsers.find((user) => user.userId === userId)
+                      {onlineUsers.find(
+                        (user) => user.userId === recepientData?.id
+                      )
                         ? "Online"
                         : "Offline"}
                     </p>

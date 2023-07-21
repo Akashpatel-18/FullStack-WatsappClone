@@ -16,12 +16,6 @@ import Error from "./Error";
 
 const backendUrl = import.meta.env.VITE_REACT_BACKEND_URL;
 
-// const fetchUserData = async (token) => {
-//   const response = await axios.get(backendUrl + `/api/v1/myProfile/${token}`);
-
-//   return response.data;
-// };
-
 const fetchMyUserData = async ({ token, sender }) => {
   const response = await axios.get(
     backendUrl + `/api/v1/myUsers/${token}/${sender}`
@@ -42,7 +36,6 @@ const HomePage = () => {
   const profile = JSON.parse(localStorage.getItem("profile"));
   const token = profile?.token;
   const myId = profile?.id;
-  const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -84,26 +77,11 @@ const HomePage = () => {
 
   useEffect(() => {
     socket.current = io(import.meta.env.VITE_REACT_BACKEND_URL);
-  }, []);
-
-  useEffect(() => {
-    socket.current.emit("addNewUser", myId);
-    socket.current.on("getUsers", (res) => {
+    socket.current.on("onlineUsers", (res) => {
       setOnlineUsers(res);
     });
+    socket.current.emit("join", myId);
   }, []);
-
-  // useEffect(() => {
-  //   socket.current = io("http://localhost:3001");
-  // }, []);
-
-  // const {
-  //   data: profileData,
-  //   isLoading: profileLoading,
-  //   isError: profileError,
-  // } = useQuery("profile", () => fetchUserData(token), {
-  //   enabled: !!profile,
-  // });
 
   const sender = userProfile?.id;
   const {
@@ -114,27 +92,12 @@ const HomePage = () => {
     enabled: !!userProfile,
   });
 
-  // useEffect(() => {
-  //   if (profileData) {
-  //     setUserProfile(profileData);
-  //   }
-  // }, [profileData]);
-
-  // useEffect(() => {
-  //   socket.current.emit("add-new-user", { myId });
-  //   socket.current?.on("get-users", (data) => {
-  //     setOnlineUsers(data);
-  //   });
-  // }, []);
-
   const truncateText = (text, maxLength) => {
     if (text.length > maxLength) {
       return text.substring(0, maxLength) + " ....";
     }
     return text;
   };
-
-  // console.log(onlineUsers);
 
   return (
     <>
@@ -165,7 +128,7 @@ const HomePage = () => {
                   >
                     <img
                       className="h-10 w-10 mr-2 rounded-full object-cover cursor-pointer ring-pink-600 ring-2 ring-offset-2 ring-offset-gray-950"
-                      src={userProfile?.avatar?.secureUrl}
+                      src={userProfile?.avatar}
                       alt="Avatar"
                     />
                   </IconButton>
@@ -229,7 +192,7 @@ const HomePage = () => {
                       <div className="flex items-center">
                         <img
                           className="h-12 sm:h-11 sm:w-11 w-12 ml-2 rounded-full object-cover"
-                          src={user.user.avatar.secureUrl}
+                          src={user.user.avatar}
                           alt={user.user.username}
                         />
                         <div className="ml-3 mr-3">
@@ -239,7 +202,7 @@ const HomePage = () => {
                           </p>
                           <p className="text-md sm:text-sm tracking-wide text-gray-400">
                             {user.lastMessage &&
-                              truncateText(user.lastMessage.content, 36)}
+                              truncateText(user.lastMessage.content, 33)}
                           </p>
                         </div>
                       </div>

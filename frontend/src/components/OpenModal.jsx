@@ -113,7 +113,7 @@ const OpenModal = ({ open, setOpen }) => {
                         className={`h-12 sm:h-10 ${
                           user._id === sender ? "hidden" : null
                         } w-12 sm:w-10 rounded-full object-cover`}
-                        src={user.avatar.secureUrl}
+                        src={user.avatar}
                         alt={user.username}
                       />
                       <p
@@ -149,7 +149,7 @@ const OpenModal = ({ open, setOpen }) => {
                           className={`h-12 sm:h-10 ${
                             user._id === sender ? "hidden" : null
                           } w-12 sm:w-10 rounded-full object-cover`}
-                          src={user.avatar.secureUrl}
+                          src={user.avatar}
                           alt={user.username}
                         />
                         <p

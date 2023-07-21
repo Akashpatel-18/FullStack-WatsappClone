@@ -52,7 +52,6 @@ const SignUpPage = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (formData.avatar) {
-      console.log(formData.avatar);
       mutate(formData);
     } else {
       toast.error("Please choose avatar");

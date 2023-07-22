@@ -14,7 +14,7 @@ const SignUpPage = () => {
     avatar: "",
   });
 
-  const backendUrl = "https://chatty-nx09.onrender.com";
+  const backendUrl = import.meta.env.VITE_REACT_BACKEND_URL;
 
   const createUser = async (formData) => {
     const response = await axios.post(backendUrl + "/api/v1/signUp", formData);

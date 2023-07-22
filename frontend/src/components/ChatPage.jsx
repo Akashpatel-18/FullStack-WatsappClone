@@ -22,7 +22,7 @@ const ChatPage = () => {
   const token = profile?.token;
   const sender = profile?.id;
   const recepient = userId;
-  const backendUrl = "https://chatty-nx09.onrender.com";
+  const backendUrl = import.meta.env.VITE_REACT_BACKEND_URL;
   let data = "";
 
   useEffect(() => {

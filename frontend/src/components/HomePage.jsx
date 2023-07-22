@@ -202,7 +202,7 @@ const HomePage = () => {
                           </p>
                           <p className="text-md sm:text-sm tracking-wide text-gray-400">
                             {user.lastMessage &&
-                              truncateText(user.lastMessage.content, 33)}
+                              truncateText(user.lastMessage.content, 25)}
                           </p>
                         </div>
                       </div>

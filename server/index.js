@@ -4,11 +4,13 @@ const dotenv = require('dotenv')
 const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser')
 const cors = require('cors')
+// const Pusher = require('pusher')
 const userRoutes = require('./routes/user')
 const chatRoutes = require('./routes/chat')
 const messageRoutes = require('./routes/message')
 dotenv.config()
 const app = express()
+const port = process.env.PORT || 3001;
 const server = require('http').createServer(app);
 const io = require('socket.io')(server,  {
     cors: {
@@ -16,15 +18,33 @@ const io = require('socket.io')(server,  {
     }
 });
 
+// const pusher = new Pusher({
+//     appId: "1639470",
+//     key: "afe2e28725327797d919",
+//     secret : "6cc9165996e6eefa6e2f",
+//     cluster: "ap2",
+//     useTLS: true
+// })
+
 
 app.use(cookieParser())
 app.use(cors())
 app.use(bodyParser.json({extended : true, limit: '30mb'}))
 app.use(bodyParser.urlencoded({extended : true, limit: '30mb'}))
 
-mongoose.connect(process.env.MONGO_URL)
-.then(() => console.log("mongodb connected"))
-.catch((err) => console.log(Error, err))
+// mongoose.connect(process.env.MONGO_URL)
+// .then(() => console.log("mongodb connected"))
+// .catch((err) => console.log(Error, err))
+
+const connectDB = async () => {
+  try {
+    const conn = await mongoose.connect(process.env.MONGO_URL);
+    console.log(`MongoDB Connected: ${conn.connection.host}`);
+  } catch (error) {
+    console.log(error);
+    process.exit(1);
+  }
+}
 
 app.get('/', (req,res) => {
     res.json("welcome")
@@ -79,9 +99,18 @@ io.on("connection", (socket) => {
   
 })
 
-const PORT = process.env.PORT || 3001;
-server.listen(PORT, () => {
-    console.log(`server started on port ${PORT}`)
-})
+// pusher.trigger("my-channel", "my-event", {
+//     message: "hello World"
+// })
 
+
+// server.listen(port, () => {
+//     console.log(`server started on port ${port}`)
+// })
+
+connectDB().then(() => {
+    server.listen(port, () => {
+        console.log("listening for requests");
+    })
+})
 

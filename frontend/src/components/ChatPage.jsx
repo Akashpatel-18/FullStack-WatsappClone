@@ -5,6 +5,7 @@ import { FaImage, FaRegImage } from "react-icons/fa";
 import { FiSend } from "react-icons/fi";
 import { useParams, useNavigate } from "react-router-dom";
 import moment from "moment";
+import { toast } from "react-hot-toast";
 import { useQuery } from "react-query";
 import axios from "axios";
 import { UserProfileShare } from "../Context/UserContext";
@@ -13,7 +14,7 @@ const ChatPage = () => {
   const { userProfile, socket, onlineUsers } = UserProfileShare();
   const { userId } = useParams();
   const [content, setContent] = useState("");
-  const [image, setImage] = useState("");
+  const [image, setImage] = useState(null);
   const [messages, setMessages] = useState([]);
   const [receiveMessage, setReceiveMessage] = useState(null);
   const navigate = useNavigate();
@@ -40,6 +41,29 @@ const ChatPage = () => {
     fetchData();
   }, [userId]);
 
+  useEffect(() => {
+    const sendImage = async () => {
+      try {
+        const inputData = {
+          sender: sender,
+          recepient: recepient,
+          image: image,
+        };
+        const response = await axios.post(
+          backendUrl + `/api/v1/message/${token}`,
+          inputData
+        );
+        setMessages([...messages, response.data]);
+        data = response.data;
+        socket.current.emit("sendMessage", { data, recepient });
+      } catch (error) {
+        toast.error(error.response.data.message);
+      }
+      setImage(null);
+    };
+    image && sendImage();
+  }, [image]);
+
   const fetchUserData = async ({ userId, token }) => {
     const response = await axios.get(
       backendUrl + `/api/v1/user/${token}/${userId}`
@@ -62,16 +86,16 @@ const ChatPage = () => {
     }
   };
 
-  // const handleImageChange = async (e) => {
-  //   const file = e.target.files[0];
-  //   if (file) {
-  //     const reader = new FileReader();
-  //     reader.readAsDataURL(file);
-  //     reader.onloadend = () => {
-  //       setImage(reader.result);
-  //     };
-  //   }
-  // };
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onloadend = () => {
+        setImage(reader.result);
+      };
+    }
+  };
 
   const handleInput = async () => {
     if (content) {
@@ -171,45 +195,49 @@ const ChatPage = () => {
               {messages?.map((message) => (
                 <div ref={scrollRef} key={message._id}>
                   {/* image */}
-                  {/* <div
-                    className={` chat ${
-                      message.sender === sender ? "chat-end" : "chat-start"
-                    }   chat-start `}
-                  >
+                  {message.image && (
                     <div
-                      className={`chat-bubble max-w-[250px]  min-w-[56px] bg-slate-900`}
+                      className={` chat ${
+                        message.sender === sender ? "chat-end" : "chat-start"
+                      }   chat-start `}
                     >
-                      <div>
-                        <img
-                          className="w-50 h-80 rounded-lg object-cover"
-                          src="https://th.bing.com/th/id/OIP.MBlOJPg-beF5E6q2yR5k9gAAAA?pid=ImgDet&rs=1"
-                          alt="Avatar"
-                        />
+                      <div
+                        className={`chat-bubble max-w-[250px]  min-w-[56px] bg-slate-900`}
+                      >
+                        <div>
+                          <img
+                            className="w-50 h-80 rounded-lg object-cover"
+                            src={message.image}
+                            alt="Avatar"
+                          />
+                        </div>
                       </div>
                     </div>
-                  </div> */}
+                  )}
 
                   {/* text  */}
-                  <div
-                    className={` chat ${
-                      message.sender === sender ? "chat-end" : "chat-start"
-                    }  mb-1 `}
-                  >
+                  {message.content && (
                     <div
-                      className={`chat-bubble tracking-wide text-md max-w-[250px] ${
-                        message.sender !== sender
-                          ? "bg-gray-800 text-gray-300"
-                          : "bg-teal-500 text-black"
-                      } min-w-[56px]`}
+                      className={` chat ${
+                        message.sender === sender ? "chat-end" : "chat-start"
+                      }  mb-1 `}
                     >
-                      {message.content}
+                      <div
+                        className={`chat-bubble tracking-wide text-md max-w-[250px] ${
+                          message.sender !== sender
+                            ? "bg-gray-800 text-gray-300"
+                            : "bg-teal-500 text-black"
+                        } min-w-[56px]`}
+                      >
+                        {message.content}
+                      </div>
+                      <div className="chat-footer">
+                        <time className="text-[12px]  text-white">
+                          {moment(message.timestamp).format("HH:mm")}
+                        </time>
+                      </div>
                     </div>
-                    <div className="chat-footer">
-                      <time className="text-[12px]  text-white">
-                        {moment(message.timestamp).format("HH:mm")}
-                      </time>
-                    </div>
-                  </div>
+                  )}
                 </div>
               ))}
             </div>
@@ -228,13 +256,13 @@ const ChatPage = () => {
                 <label htmlFor="image-upload">
                   <FaRegImage className="text-2xl text-slate-500 curser cursor-pointer" />
                 </label>
-                {/* <input
+                <input
                   id="image-upload"
                   type="file"
                   accept="image/*"
                   onChange={handleImageChange}
                   style={{ display: "none" }} // Hide the input field
-                /> */}
+                />
               </div>
               <FiSend
                 disabled={content ? false : true}

@@ -8,6 +8,7 @@ import MenuItem from "@mui/material/MenuItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import Logout from "@mui/icons-material/Logout";
 import moment from "moment";
+
 import { Link, useNavigate } from "react-router-dom";
 import { UserProfileShare } from "../Context/UserContext";
 import io from "socket.io-client";
@@ -101,11 +102,11 @@ const HomePage = () => {
 
   return (
     <>
-      {loading && userLoading ? (
+      { (loading && userLoading) ? 
         <Loading />
-      ) : error && userError ? (
+       : (error && userError) ? 
         <Error />
-      ) : (
+       : (
         <div className="bg-gray-950 min-h-screen text-white">
           {/* Navbar */}
 
@@ -201,8 +202,8 @@ const HomePage = () => {
                               user.user.username.slice(1)}
                           </p>
                           <p className="text-md sm:text-sm tracking-wide text-gray-400">
-                            {user.lastMessage &&
-                              truncateText(user.lastMessage.content, 22)}
+                            {user.lastMessage?.content ?
+                              truncateText(user.lastMessage.content, 22) : "image" }
                           </p>
                         </div>
                       </div>

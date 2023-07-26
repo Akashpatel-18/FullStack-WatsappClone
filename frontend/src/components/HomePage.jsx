@@ -102,11 +102,11 @@ const HomePage = () => {
 
   return (
     <>
-      { (loading && userLoading) ? 
+      {loading && userLoading ? (
         <Loading />
-       : (error && userError) ? 
+      ) : error && userError ? (
         <Error />
-       : (
+      ) : (
         <div className="bg-gray-950 min-h-screen text-white">
           {/* Navbar */}
 
@@ -202,8 +202,11 @@ const HomePage = () => {
                               user.user.username.slice(1)}
                           </p>
                           <p className="text-md sm:text-sm tracking-wide text-gray-400">
-                            {user.lastMessage?.content ?
-                              truncateText(user.lastMessage.content, 22) : "image" }
+                            {user.lastMessage?.content
+                              ? truncateText(user.lastMessage.content, 22)
+                              : user.lastMessage?.image
+                              ? "image"
+                              : null}
                           </p>
                         </div>
                       </div>

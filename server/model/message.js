@@ -4,7 +4,7 @@ const messageSchema = new mongoose.Schema({
     sender:{type: mongoose.Schema.Types.ObjectId, ref:'User'},
     recepient:{type: mongoose.Schema.Types.ObjectId, ref:'User'},
     content:{type: String},
-   
+    image:{type: String},
     timestamp:{type: Date, default:Date.now}
 
 })

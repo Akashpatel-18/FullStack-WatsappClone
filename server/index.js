@@ -4,7 +4,6 @@ const dotenv = require('dotenv')
 const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser')
 const cors = require('cors')
-// const Pusher = require('pusher')
 const userRoutes = require('./routes/user')
 const chatRoutes = require('./routes/chat')
 const messageRoutes = require('./routes/message')
@@ -17,15 +16,6 @@ const io = require('socket.io')(server,  {
       origin: '*',
     }
 });
-
-// const pusher = new Pusher({
-//     appId: "1639470",
-//     key: "afe2e28725327797d919",
-//     secret : "6cc9165996e6eefa6e2f",
-//     cluster: "ap2",
-//     useTLS: true
-// })
-
 
 app.use(cookieParser())
 app.use(cors())
@@ -98,15 +88,6 @@ io.on("connection", (socket) => {
 
   
 })
-
-// pusher.trigger("my-channel", "my-event", {
-//     message: "hello World"
-// })
-
-
-// server.listen(port, () => {
-//     console.log(`server started on port ${port}`)
-// })
 
 connectDB().then(() => {
     server.listen(port, () => {

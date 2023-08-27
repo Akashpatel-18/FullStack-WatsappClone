@@ -3,7 +3,8 @@
 <h3 align="center">It's a MERN Stack social media web application</h3>
 
 <br />
-
+<img src="https://github.com/Akashpatel-18/FullStack-WatsappClone/assets/125431325/7dae2c4d-4d7b-458a-b451-269af6fdc4b7">
+<br />
 <h2 align="center">🖥️ Tech Stack</h2>
 
 

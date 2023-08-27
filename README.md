@@ -6,6 +6,10 @@
 
 <h2 align="center">🖥️ Tech Stack</h2>
 
+<br />
+
+https://github.com/Akashpatel-18/FullStack-WatsappClone/assets/125431325/938f2ad2-e17c-4a04-9aaa-d7dbdff083de
+
 
 <h4 align="center">Frontend:</h4>
 

@@ -5,6 +5,7 @@
 <br />
 <img src="https://github.com/Akashpatel-18/FullStack-WatsappClone/assets/125431325/7dae2c4d-4d7b-458a-b451-269af6fdc4b7">
 <br />
+<br />
 <h2 align="center">🖥️ Tech Stack</h2>
 
 
@@ -150,7 +151,7 @@ npm install
 ```
 
 
-To run the application got to the frontend folder and run the following command:
+To run the application go to the frontend folder and run the following command:
 
 ```
 npm run dev

@@ -103,7 +103,7 @@ The project repository can be found in [GitHub link](https://github.com/Akashpat
 ```
 Using HTTPS
 
-# git clone https://github.com/Akashpatel-18/FullStack-WatsappClone-frontend.git
+# git clone https://github.com/Akashpatel-18/FullStack-WatsappClone.git
 ```
 
 

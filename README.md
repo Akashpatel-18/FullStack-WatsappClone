@@ -85,7 +85,7 @@
 
 ## Getting Started
 
-This project was built using React, Redux, MUI, HTML, CSS, JavaScript, Node JS, Express, MongoDB and JWT. It is a Social media web application and for running on your local environment you should follow these guidelines.
+This project was built using React, context API, Tailwind CSS, MUI, HTML5, Node JS, Express, MongoDB, JWT and Socket.io It is a Social media web application and for running on your local environment you should follow these guidelines.
 
 
 ### Prerequisites

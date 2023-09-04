@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+Drimport React, { useEffect, useRef, useState } from "react";
 import "tailwindcss/tailwind.css";
 import { BiArrowBack } from "react-icons/bi";
 import { FaImage, FaRegImage } from "react-icons/fa";
@@ -149,7 +149,7 @@ const ChatPage = () => {
     <>
       <div className="lg:bg-slate-800">
         <div className="lg:container lg:mx-auto lg:px-52">
-          <div className="flex flex-col h-screen bg-[url('https://th.bing.com/th/id/OIP.kvq2cAPCMr8rX-Av81em_gAAAA?pid=ImgDet&rs=1')] bg-center">
+          <div className="flex flex-col bg-slate-900 h-screen bg-[url('https://th.bing.com/th/id/OIP.kvq2cAPCMr8rX-Av81em_gAAAA?pid=ImgDet&rs=1')] bg-center">
             {/* Top Navbar */}
             {recepientData && (
               <div
@@ -232,7 +232,7 @@ const ChatPage = () => {
                         {message.content}
                       </div>
                       <div className="chat-footer">
-                        <time className="text-[8px]  text-white">
+                        <time className="text-[9px]  text-white">
                           {moment(message.timestamp).format("HH:mm")}
                         </time>
                       </div>

@@ -188,7 +188,7 @@ const ChatPage = () => {
 
             {/* Chat messages */}
             <div
-              className={`flex-grow bg-slate-800 px-1 py-3 overflow-y-scroll ${
+              className={`flex-grow bg-slate-900 px-1 py-3 overflow-y-scroll ${
                 window.innerWidth < 1024 ? "mt-[64px] " : ""
               } `}
             >

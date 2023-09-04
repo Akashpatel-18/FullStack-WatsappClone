@@ -232,7 +232,7 @@ const ChatPage = () => {
                         {message.content}
                       </div>
                       <div className="chat-footer">
-                        <time className="text-[12px]  text-white">
+                        <time className="text-[11px]  text-white">
                           {moment(message.timestamp).format("HH:mm")}
                         </time>
                       </div>
